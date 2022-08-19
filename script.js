@@ -30,10 +30,13 @@ function randomQuote() {
 
 /* Revealing or hiding language list */
 languageSelect.addEventListener("click", () => {
+    console.log(languageList.style.display);
+    /* languageList.classList.toggle("hide"); */
     if (languageList.style.display === "none") {
         languageList.style.display = "flex";
     } else {
         languageList.style.display = "none"
     }
 })
+
 newQuoteButton.addEventListener("click", randomQuote);

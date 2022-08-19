@@ -4,27 +4,27 @@
 :root {
     --primary-color: white;
     --secondary-color: black;
-    --tertiary-color: rgb(207, 207, 207);
+    --tertiary-color: rgb(201, 201, 201);
     --shadow-color: rgba(0,0,0, 0.5);
     --shadow-toggle: rgba(0,0,0,0.1);
     --dur: 0.3s;
 }
 
-.darkmode {
+.dark-mode {
     --primary-color: rgb(41, 41, 46);
-    --secondary-color: rgb(211, 211, 211);
-    --shadow-color: rgba(255, 255, 255, 0.5);
+    --secondary-color: rgb(235, 233, 233);
+    --shadow-color: rgba(255, 255, 255, 0.3);
 }
 
-.darkmode ul > li img {
+.dark-mode ul > li img {
     filter: invert(100%) sepia(0%) saturate(5336%) hue-rotate(161deg) brightness(114%) contrast(101%);
 }
 
-.darkmode ul > li img:hover {
+.dark-mode ul > li img:hover {
     filter: none;
 }
 
-.darkmode #dark-mode-toggle > .indicator {
+.dark-mode #dark-mode-toggle > .indicator {
     left: 2rem;
 }
 
@@ -32,7 +32,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Padauk', sans-serif;
+    font-family: 'Padauk', sans-serif !important;
 }
 
 body {
@@ -42,6 +42,7 @@ body {
     min-height: 100vh;
     color: var(--secondary-color);
     background: var(--primary-color);
+    -webkit-tap-highlight-color: transparent;
 }
 
 .wrapper {
@@ -78,7 +79,7 @@ body {
 
 .language > .language-list {
     display: none;
-    /* display: flex; */
+    align-items: center;
     gap: 1em;
     margin-left: 0.5em;
 }
@@ -145,6 +146,7 @@ body {
     font-size: 2.5rem;
     text-align: center;
     margin-top: 30px;
+    /* text-shadow: 0 5px 10px var(--secondary-color); */
 }
 
 .wrapper > h1::after {
@@ -183,6 +185,7 @@ body {
     text-align: center;
     word-break: break-all;
     padding: 0 20px;
+    word-break:break-word;
 }
 
 .content > .author {
@@ -242,13 +245,13 @@ body {
     background: var(--secondary-color);
     color: var(--primary-color);
     cursor: pointer;
-    padding: 25px 25px;
+    padding: 20px 20px;
     border-radius: 50%;
     font-size: 1rem;
     font-weight: 700;
     box-shadow: 0px 0px 1rem var(--shadow-color);
     transition: box-shadow 500ms ease;
-    inline-size: 100px;
+    inline-size: 88px;
     overflow-wrap: break-word;
 }
 
