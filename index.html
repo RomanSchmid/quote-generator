@@ -5,31 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
+    <script defer src="dark-mode.js"></script>
     <title>Quote Generator</title>
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <h1>Quote of the Day</h1>
-        </header>
+        <div class="settings">
+            <div class="language">
+                <p id="current-language">EN</p>
+                <ul class="language-list">
+                    <li class="language-option">EN</li>
+                    <li class="language-option">DE</li>
+                    <li class="language-option">CZ</li>
+                </ul>
+            </div>
+            <div id="dark-mode-toggle">
+                <i class="indicator"></i>
+            </div>
+        </div>
+        <h1>Quote of the Day</h1>
         <div class="content">
             <div class="quote-box">
-                <div class="quote-img left"><img src="src/images/quote-left.svg" alt="Left quote"></div>
+                <div class="quote-img left">
+                    <img 
+                        src="src/images/quote-left.svg" 
+                        alt="Left quote"
+                    >
+                </div>
                 <p class="quote-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus facere aspernatur esse quos?</p>
-                <div class="quote-img right"><img src="src/images/quote-right.svg" alt="Right quote"></div>
+                <div class="quote-img right">
+                    <img 
+                        src="src/images/quote-right.svg" 
+                        alt="Right quote"
+                    >
+                </div>
             </div>
             <div class="author">Pavel Novák</div>
         </div>
         <div class="buttons">
             <div class="features">
                 <ul>
-                    <li><img src="src/images/sound.svg" alt=""></li>
-                    <li><img src="src/images/copy.svg" alt=""></li>
-                    <li><img src="src/images/twitter.svg" alt=""></li>
+                    <li><img class="feature-icon" src="src/images/sound.svg" alt=""></li>
+                    <li><img class="feature-icon" src="src/images/copy.svg" alt=""></li>
+                    <li><img class="feature-icon" src="src/images/twitter.svg" alt=""></li>
                 </ul>
             </div>
-            <button>New Quote</button>
+            <button>NEW Quote</button>
         </div>
     </div>
 </body>
