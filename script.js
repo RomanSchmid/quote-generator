@@ -65,7 +65,7 @@ const twitterButton = document.getElementById("twitter-button");
 const newQuoteButton = document.getElementById("new-quote-button");
 
 let voices;
-// wait on voices to be loaded before fetching list
+// Wait on voices to be loaded before fetching list
 window.speechSynthesis.onvoiceschanged = function() {
     window.speechSynthesis.getVoices();
     voices = speechSynthesis.getVoices();
