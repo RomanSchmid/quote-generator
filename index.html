@@ -13,9 +13,9 @@
     <div class="wrapper">
         <div class="settings">
             <div class="language">
-                <p id="current-language">EN</p>
+                <p id="current-language" class="show-up"></p>
                 <ul class="language-list hide">
-                    <li class="language-option">EN</li>
+                    <li class="language-option">ES</li>
                     <li class="language-option">DE</li>
                     <li class="language-option">CZ</li>
                 </ul>
@@ -25,7 +25,8 @@
             </div>
         </div>
         <h1>Quote Generator</h1>
-        <div class="content">
+        <button id="firstGenerateButton">CLICK <br> for a new Quote</button>
+        <div class="content hide">
             <div class="quote-box">
                 <div class="quote-img left">
                     <img 
@@ -43,15 +44,21 @@
             </div>
             <div class="author">Pavel Novák</div>
         </div>
-        <div class="buttons">
+        <div class="buttons hide">
             <div class="features">
                 <ul>
-                    <li><img class="feature-icon" src="src/images/sound.svg" alt=""></li>
-                    <li><img class="feature-icon" src="src/images/copy.svg" alt=""></li>
-                    <li><img class="feature-icon" src="src/images/twitter.svg" alt=""></li>
+                    <li id="sound-button">
+                        <img class="feature-icon" src="src/images/sound.svg" alt="">
+                    </li>
+                    <li id="copy-button">
+                        <img class="feature-icon" src="src/images/copy.svg" alt="">
+                    </li>
+                    <li id="twitter-button">
+                        <img class="feature-icon" src="src/images/twitter.svg" alt="">
+                    </li>
                 </ul>
             </div>
-            <button>NEW Quote</button>
+            <button id="new-quote-button">NEW Quote</button>
         </div>
     </div>
 </body>

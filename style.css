@@ -69,7 +69,8 @@ body {
 .language > #current-language {
     text-decoration: none;
     font-weight: 700;
-    
+    cursor: pointer;
+    transition: 0.1s;
 }
 
 #current-language::after {
@@ -77,15 +78,29 @@ body {
     margin-left: 5px;
 }
 
+#current-language:active {
+    transform: scale(1.2);
+}
+
 .language > .language-list {
     display: none;
     align-items: center;
     gap: 1em;
     margin-left: 0.5em;
+    cursor: pointer;
+}
+
+.language > .show-up {
+    display: flex;
 }
 
 .language-list > .language-option {
     list-style-type: none;
+    transition: 0.1s;
+}
+
+.language-list > .language-option:active {
+    transform: scale(1.2);
 }
 
 #dark-mode-toggle {
@@ -158,8 +173,34 @@ body {
     border-bottom: 1px solid var(--tertiary-color);
 }
 
+.wrapper > #firstGenerateButton {
+    border: none;
+    outline: none;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 35px;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    font-weight: 700;
+    box-shadow: 0px 0px 1rem var(--shadow-color);
+    transition: box-shadow 500ms ease;
+    inline-size: 188px;
+    overflow-wrap: break-word;
+    display: flex;
+    margin: 80px auto;
+}
+
+.wrapper > #firstGenerateButton.hide {
+    display: none;
+}
+
 .wrapper > .content {
     margin-top: 20px;
+}
+
+.wrapper > .content.hide {
+    display: none;
 }
 
 .content > .quote-box {
@@ -204,10 +245,14 @@ body {
 .wrapper > .buttons {
     border-top: 1px solid var(--tertiary-color);
     margin-top: 20px;
-    padding-top: 20px;
+    padding-top: 25px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.wrapper > .buttons.hide {
+    display: none;
 }
 
 .buttons > .features > ul {
@@ -240,30 +285,37 @@ body {
     transition: filter 500ms ease;
 }
 
-.buttons > button {
+.buttons > #new-quote-button {
     border: none;
     outline: none;
     background: var(--secondary-color);
     color: var(--primary-color);
     cursor: pointer;
-    padding: 20px 20px;
+    padding: 10px 10px;
     border-radius: 50%;
     font-size: 1rem;
     font-weight: 700;
     box-shadow: 0px 0px 1rem var(--shadow-color);
     transition: box-shadow 500ms ease;
-    inline-size: 88px;
+    /* inline-size: 88px; */
     overflow-wrap: break-word;
+    width: 80px;
+    height: 80px;
 }
 
-.buttons > button:hover {
+#new-quote-button.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.buttons > #new-quote-button:hover {
     box-shadow: none;
 }
 
 @media (min-width: 500px) {
-    .buttons > button {
+    .buttons > #new-quote-button {
         font-size: 1.1rem;
-        border-radius: 30px;
+        border-radius: 40px;
         padding: 15px 25px;
         inline-size: auto;
     }
