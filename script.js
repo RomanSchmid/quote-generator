@@ -134,28 +134,28 @@ languageOptions.forEach(e => e.addEventListener("click", () => {
             firstGenerateButton.classList.remove("hide");
             document.querySelector(".content").classList.add("hide");
             document.querySelector(".buttons").classList.add("hide");
-            voiceNumber = 7;
+            /* voiceNumber = 7; */
             break;
         case "ES":
             quoteUrl = currentLanguageObject.url;
             firstGenerateButton.classList.remove("hide");
             document.querySelector(".content").classList.add("hide");
             document.querySelector(".buttons").classList.add("hide");
-            voiceNumber = 8;
+            /* voiceNumber = 8; */
             break;
         case "DE":
             quoteUrl = currentLanguageObject.url;
             firstGenerateButton.classList.remove("hide");
             document.querySelector(".content").classList.add("hide");
             document.querySelector(".buttons").classList.add("hide");
-            voiceNumber = 4;
+            /* voiceNumber = 4; */
             break;
         case "CZ":
             quoteUrl = currentLanguageObject.url;
             firstGenerateButton.classList.remove("hide");
             document.querySelector(".content").classList.add("hide");
             document.querySelector(".buttons").classList.add("hide");
-            voiceNumber = 0;
+            /* voiceNumber = 0; */
             break;
     }
 }));
@@ -163,7 +163,10 @@ languageOptions.forEach(e => e.addEventListener("click", () => {
 soundButton.addEventListener("click", () => {
     // SpeechSynthesisUtterance interface of the Web Speech API represents a speech request   
     let utterance = new SpeechSynthesisUtterance(`${quoteText.innerText} by ${authorName.innerText}`);
-    utterance.voice = voices[currentLanguageObject.voiceNumber];
+    // On cell phones use only default voice
+    if (window.innerWidth > 1023) {
+        utterance.voice = voices[currentLanguageObject.voiceNumber];
+    }
     speechSynthesis.speak(utterance); // speak method of speechSynthesis reads passed string
 });
 
