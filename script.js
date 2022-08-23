@@ -30,20 +30,35 @@ const czech = {
     url: "https://quotes15.p.rapidapi.com/quotes/random/?language_code=cs"
 }
 
+const array = [english, spanish, german, czech];
+/* let obj = array.find(e => e.languageCode === "DE");
+console.log(obj); */
+
+let currentLanguageObject;
 const currentLanguage = document.getElementById("current-language");
 const languageList = document.querySelector(".language-list");
 const languageOptions = document.querySelectorAll(".language-option");
 
-localStorage.setItem("test", JSON.stringify(english));
+/* localStorage.setItem("test", JSON.stringify(english));
 let obj = JSON.parse(localStorage.getItem("test"));
-console.log(obj);
+console.log(obj); */
 
-// Check if the language is already set in the Local Storage
+/* Check if the language is already set in the Local Storage
+    YES - get data from the local storage and set it as a current language
+    NO - set english as a current language */
 if (localStorage.getItem("language")) {
-    currentLanguage.innerText = localStorage.getItem("language");
+    currentLanguageObject = JSON.parse(localStorage.getItem("language"));
+    currentLanguage.innerText = currentLanguageObject.languageCode;
+    for (let i = 0; i < languageOptions.length; i++) {
+        languageOptions[i].innerText = currentLanguageObject.otherLanguages[i];
+    }
 } else {
-    localStorage.setItem("language", english.languageCode);
+    currentLanguageObject = english;
+    localStorage.setItem("language", JSON.stringify(english));
     currentLanguage.innerText = english.languageCode;
+    for (let i = 0; i < languageOptions.length; i++) {
+        languageOptions[i].innerText = english.otherLanguages[i];
+    }
 }
 
 const quoteText = document.querySelector(".quote-text");
@@ -56,7 +71,6 @@ const twitterButton = document.getElementById("twitter-button");
 const newQuoteButton = document.getElementById("new-quote-button");
 
 let voices;
-let voiceNumber = 7;
 // wait on voices to be loaded before fetching list
 window.speechSynthesis.onvoiceschanged = function() {
     window.speechSynthesis.getVoices();
@@ -64,10 +78,7 @@ window.speechSynthesis.onvoiceschanged = function() {
     console.log(voices);
 }
 
-let quoteUrl = 'https://quotes15.p.rapidapi.com/quotes/random/?language_code=en';
-if (localStorage.getItem("quoteUrl")) {
-    quoteUrl = localStorage.getItem("quoteUrl");
-}
+let quoteUrl = currentLanguageObject.url;
 
 const options = {
     method: 'GET',
@@ -114,41 +125,41 @@ firstGenerateButton.addEventListener("click", () => {
 })
 
 languageOptions.forEach(e => e.addEventListener("click", () => {
+    let newObj = array.find(o => o.languageCode === e.innerText);
+    /* console.log(newObj); */
     currentLanguage.innerText = e.innerText;
-    e.innerText = localStorage.getItem("language");
-    localStorage.setItem("language", currentLanguage.innerText);
+    e.innerText = currentLanguageObject.languageCode;
+    currentLanguageObject = newObj;
+    localStorage.setItem("language", JSON.stringify(currentLanguageObject));
     // After 200 miliseconds, hide the language list (becouse of performing tranform scale animation of selected language)
     setTimeout(() => languageList.classList.remove("show-up"), 150);
 
     // Based on language selection update quoteUrl to fetch correct quotes
     switch(currentLanguage.innerText) {
         case "EN":
-            quoteUrl = quoteUrl.slice(0, quoteUrl.length - 2).concat("en");
-            localStorage.setItem("quoteUrl", quoteUrl);
+            quoteUrl = currentLanguageObject.url;
+            /* localStorage.setItem("quoteUrl", quoteUrl); */
             firstGenerateButton.classList.remove("hide");
             document.querySelector(".content").classList.add("hide");
             document.querySelector(".buttons").classList.add("hide");
             voiceNumber = 7;
             break;
         case "ES":
-            quoteUrl = quoteUrl.slice(0, quoteUrl.length - 2).concat("es");
-            localStorage.setItem("quoteUrl", quoteUrl);
+            quoteUrl = currentLanguageObject.url;
             firstGenerateButton.classList.remove("hide");
             document.querySelector(".content").classList.add("hide");
             document.querySelector(".buttons").classList.add("hide");
             voiceNumber = 8;
             break;
         case "DE":
-            quoteUrl = quoteUrl.slice(0, quoteUrl.length - 2).concat("de");
-            localStorage.setItem("quoteUrl", quoteUrl);
+            quoteUrl = currentLanguageObject.url;
             firstGenerateButton.classList.remove("hide");
             document.querySelector(".content").classList.add("hide");
             document.querySelector(".buttons").classList.add("hide");
             voiceNumber = 4;
             break;
         case "CZ":
-            quoteUrl = quoteUrl.slice(0, quoteUrl.length - 2).concat("cs");
-            localStorage.setItem("quoteUrl", quoteUrl);
+            quoteUrl = currentLanguageObject.url;
             firstGenerateButton.classList.remove("hide");
             document.querySelector(".content").classList.add("hide");
             document.querySelector(".buttons").classList.add("hide");
@@ -160,7 +171,7 @@ languageOptions.forEach(e => e.addEventListener("click", () => {
 soundButton.addEventListener("click", () => {
     // SpeechSynthesisUtterance interface of the Web Speech API represents a speech request   
     let utterance = new SpeechSynthesisUtterance(`${quoteText.innerText} by ${authorName.innerText}`);
-    utterance.voice = voices[voiceNumber];
+    utterance.voice = voices[currentLanguageObject.voiceNumber];
     speechSynthesis.speak(utterance); // speak method of speechSynthesis reads passed string
 });
 
