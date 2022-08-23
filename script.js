@@ -31,17 +31,11 @@ const czech = {
 }
 
 const array = [english, spanish, german, czech];
-/* let obj = array.find(e => e.languageCode === "DE");
-console.log(obj); */
 
 let currentLanguageObject;
 const currentLanguage = document.getElementById("current-language");
 const languageList = document.querySelector(".language-list");
 const languageOptions = document.querySelectorAll(".language-option");
-
-/* localStorage.setItem("test", JSON.stringify(english));
-let obj = JSON.parse(localStorage.getItem("test"));
-console.log(obj); */
 
 /* Check if the language is already set in the Local Storage
     YES - get data from the local storage and set it as a current language
@@ -126,7 +120,6 @@ firstGenerateButton.addEventListener("click", () => {
 
 languageOptions.forEach(e => e.addEventListener("click", () => {
     let newObj = array.find(o => o.languageCode === e.innerText);
-    /* console.log(newObj); */
     currentLanguage.innerText = e.innerText;
     e.innerText = currentLanguageObject.languageCode;
     currentLanguageObject = newObj;
@@ -138,7 +131,6 @@ languageOptions.forEach(e => e.addEventListener("click", () => {
     switch(currentLanguage.innerText) {
         case "EN":
             quoteUrl = currentLanguageObject.url;
-            /* localStorage.setItem("quoteUrl", quoteUrl); */
             firstGenerateButton.classList.remove("hide");
             document.querySelector(".content").classList.add("hide");
             document.querySelector(".buttons").classList.add("hide");
