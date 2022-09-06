@@ -2,7 +2,7 @@ const english = {
     languageCode: "EN",
     otherLanguages: ["ES", "DE", "CZ"],
     flag: "#",
-    voiceNumber: 7,
+    voiceNumber: 6,
     url: "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en"
 }
 
@@ -164,9 +164,10 @@ soundButton.addEventListener("click", () => {
     // SpeechSynthesisUtterance interface of the Web Speech API represents a speech request   
     let utterance = new SpeechSynthesisUtterance(`${quoteText.innerText} by ${authorName.innerText}`);
     // On cell phones use only default voice
-    if (window.innerWidth > 1023) {
+    /* if (window.innerWidth > 1023) {
         utterance.voice = voices[currentLanguageObject.voiceNumber];
-    }
+    } */
+    utterance.voice = voices[currentLanguageObject.voiceNumber];
     speechSynthesis.speak(utterance); // speak method of speechSynthesis reads passed string
 });
 
